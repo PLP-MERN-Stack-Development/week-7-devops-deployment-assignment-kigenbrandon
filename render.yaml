@@ -23,6 +23,6 @@ services:
     startCommand: npx serve -s dist
     envVars:
       - key: VITE_API_URL
-        value: https://week-6-test-debug-assignment-kigenbrandon.onrender.com/api
+        value: https://week-6-test-debug-assignment-kigenbrandon.onrender.com
     autoDeploy: true
     rootDir: client
