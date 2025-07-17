@@ -20,9 +20,9 @@ services:
     runtime: node
     plan: free
     buildCommand: npm install && npm run build
-    startCommand: serve -s dist
+    startCommand: npx serve -s dist
     envVars:
       - key: VITE_API_URL
-        value: https://week-6-test-debug-assignment-kigenbrandon.onrender.com
+        value: https://week-6-test-debug-assignment-kigenbrandon.onrender.com/api
     autoDeploy: true
     rootDir: client
