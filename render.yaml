@@ -3,8 +3,8 @@ services:
     name: server
     runtime: node
     plan: free
-    buildCommand: cd server && npm install && npm run build || true
-    startCommand: cd server && npm start
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
@@ -12,7 +12,6 @@ services:
         value: mongodb+srv://kigenbrandon:jzhIc5fLgY15J9Q6@cluster0.fazs7lj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
       - key: JWT_SECRET
         value: your_jwt_secret
-      # Add your other environment variables here
     autoDeploy: true
     rootDir: server
 
@@ -20,5 +19,10 @@ services:
     name: client
     runtime: node
     plan: free
+    buildCommand: npm install && npm run build
+    startCommand: serve -s dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://week-6-test-debug-assignment-kigenbrandon.onrender.com
     autoDeploy: true
     rootDir: client
