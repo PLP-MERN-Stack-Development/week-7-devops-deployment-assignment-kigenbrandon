@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: server
+    runtime: node
+    plan: free
+    buildCommand: cd server && npm install && npm run build || true
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        value: mongodb+srv://kigenbrandon:jzhIc5fLgY15J9Q6@cluster0.fazs7lj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      - key: JWT_SECRET
+        value: your_jwt_secret
+      # Add your other environment variables here
+    autoDeploy: true
+    rootDir: server
+
+  - type: web
+    name: client
+    runtime: node
+    plan: free
+    autoDeploy: true
+    rootDir: client
