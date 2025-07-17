@@ -10,18 +10,25 @@ jobs:
   build-and-test-server:
     runs-on: ubuntu-latest
     defaults:
-      run:
-        working-directory: ./server
+        run:
+            working-directory: ./server
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: Install dependencies
-        run: npm install
-      - name: Run server tests
-        run: npm test
+        - uses: actions/checkout@v4
+
+        - name: Use Node.js
+          uses: actions/setup-node@v4
+          with:
+            node-version: 20
+
+        - name: Install dependencies
+          run: npm install
+
+        - name: Build server
+          run: npm run build
+
+        - name: Run server tests
+          run: npm test
+
 
   build-and-test-client:
     runs-on: ubuntu-latest
