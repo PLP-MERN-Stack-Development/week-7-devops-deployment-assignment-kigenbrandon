@@ -43,6 +43,14 @@ if (process.env.NODE_ENV !== 'test') {
 // Routes
 app.use('/api/bugs', bugRoutes);
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    message: 'Backend is running',
+    timestamp: new Date().toISOString()
+  });
+});
+
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.status(200).json({ 
