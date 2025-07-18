@@ -26,9 +26,10 @@ app.use('/api/', limiter);
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
-  credentials: true
+  origin: '*',
+  credentials: false // or true, depending on if you need cookies/auth headers
 }));
+
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
