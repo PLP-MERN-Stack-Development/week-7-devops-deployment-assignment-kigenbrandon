@@ -10,25 +10,24 @@ jobs:
   build-and-test-server:
     runs-on: ubuntu-latest
     defaults:
-        run:
-            working-directory: ./server
+      run:
+        working-directory: ./server
     steps:
-        - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-        - name: Use Node.js
-          uses: actions/setup-node@v4
-          with:
-            node-version: 20
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-        - name: Install dependencies
-          run: npm install
+      - name: Install server dependencies
+        run: npm install
 
-        - name: Build server
-          run: npm run build
+      - name: Build server
+        run: npm run build
 
-        - name: Run server tests
-          run: npm test
-
+      - name: Run server tests
+        run: npm test
 
   build-and-test-client:
     runs-on: ubuntu-latest
@@ -37,13 +36,20 @@ jobs:
         working-directory: ./client
     steps:
       - uses: actions/checkout@v4
+
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Install dependencies
+
+      - name: Set environment variables for client
+        run: echo "REACT_APP_API_URL=https://week-6-test-debug-assignment-kigenbrandon.onrender.com" >> $GITHUB_ENV
+
+      - name: Install client dependencies
         run: npm install
+
       - name: Run client tests
         run: npm test
+
       - name: Build client
         run: npm run build
